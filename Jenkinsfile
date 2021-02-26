@@ -1,6 +1,10 @@
 def gv
 pipeline{
   agent any
+  parameter{
+    choice(name:'VERSION',choices:['1.1.0','1.1.1','1.1.2'],description:'Version used')
+    booleanParam(name:'execute',defaultValue:true,description:'please execute')
+  }
     stages{
       stage('init'){
         steps{
@@ -18,7 +22,11 @@ pipeline{
         }
       }
       stage('test'){
-     
+        when{
+          expression{
+            params.execute
+          }
+        }
         steps{
           script{
             gv.test()
