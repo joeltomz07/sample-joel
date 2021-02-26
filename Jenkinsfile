@@ -1,5 +1,9 @@
 pipeline{
   agent any
+  parameter{
+    choice(name:'VERSION',choices:['1.1.0','1.1.1','1.1.2'],description:'Version used')
+    booleanParam(name:'execute',defaultValue:true,description:'please execute')
+  }
     stages{
       stage('build'){
         steps{
@@ -7,6 +11,12 @@ pipeline{
         }
       }
       stage('test'){
+        when{
+          expression{
+            params.execute
+          }
+        }
+        
         steps{
           echo "testing the application"
         }
