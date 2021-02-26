@@ -11,23 +11,18 @@ pipeline{
       }
       stage('build'){
         steps{
-           echo "building the application"
+           gv.build()
         }
       }
       stage('test'){
-        when{
-          expression{
-            params.execute
-          }
-        }
-        
+     
         steps{
-          echo "testing the application"
+         gv.test()
         }
       }
       stage('deploy'){
         steps{
-          echo "deploying the application"
+          gv.deploy()
         }
       }
     }
