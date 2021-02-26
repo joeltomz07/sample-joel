@@ -11,18 +11,26 @@ pipeline{
       }
       stage('build'){
         steps{
-           gv.build()
+          script{
+             gv.build()
+          }
+          
         }
       }
       stage('test'){
      
         steps{
-         gv.test()
+          script{
+            gv.test()
+          }
+         
         }
       }
       stage('deploy'){
         steps{
-          gv.deploy()
+           script{
+            gv.deploy()
+           }
         }
       }
     }
