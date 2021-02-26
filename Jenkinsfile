@@ -1,7 +1,7 @@
 def gv
 pipeline{
   agent any
-  parameter{
+  parameters{
     choice(name:'VERSION',choices:['1.1.0','1.1.1','1.1.2'],description:'Version used')
     booleanParam(name:'execute',defaultValue:true,description:'please execute')
   }
